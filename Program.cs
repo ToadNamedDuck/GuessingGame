@@ -22,12 +22,20 @@ void GuessingGame()
     if(difficulty.ToLower() == "hard"){
         maxAttempts = 3;
     }
-    Console.WriteLine($"You only have {maxAttempts + 1} attempts to win!");
+    if(difficulty.ToLower() == "cheater"){
+        maxAttempts = int.MaxValue;//pseudo-infinite attempts
+    }
+    if(difficulty.ToLower() == "cheater"){
+        Console.WriteLine($"You have near-infinite attempts to win!");    
+    }
+    else{
+        Console.WriteLine($"You only have {maxAttempts + 1} attempts to win!");
+    }
     Console.WriteLine("___________________________________");
     Console.WriteLine("PLEASE: Only enter in a number!");
     Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
 
-    do//do...while to keep track of the userGuess and compare it to an outside-scope variable, if the input can change.
+    do//do...while to keep track of the userGuess and compare it to an outside-scope variable
     {
         int userGuess = int.Parse(Console.ReadLine());
         trackedGuess = userGuess;
@@ -40,11 +48,21 @@ void GuessingGame()
                 guessTracker++;
                 if(userGuess > secretNumber){
                     Console.WriteLine("Your guess is HIGHER than the secret number!");
-                    Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                    if(difficulty.ToLower() != "cheater"){
+                        Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                    }
+                    else{
+                        Console.WriteLine($"Enter your guess (Guess {guessTracker + 1}): ");
+                    }
                 }
                 else{
                     Console.WriteLine("Your guess is LOWER than the secret number!");
-                    Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                    if(difficulty.ToLower() != "cheater"){
+                        Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                    }
+                    else{
+                        Console.WriteLine($"Enter your guess (Guess {guessTracker + 1}): ");
+                    }
                 }
             }
         }
