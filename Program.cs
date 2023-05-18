@@ -24,7 +24,14 @@ void GuessingGame()
             if (guessTracker < maxAttempts)//prevents these lines from going through after the final input session.
             {
                 guessTracker++;
-                Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                if(userGuess > secretNumber){
+                    Console.WriteLine("Your guess is HIGHER than the secret number!");
+                    Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                }
+                else{
+                    Console.WriteLine("Your guess is LOWER than the secret number!");
+                    Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
+                }
             }
         }
         else
