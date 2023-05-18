@@ -7,9 +7,23 @@ void GuessingGame()
     int guessTracker = 0;
     int secretNumber = random.Next(1,100);
     int trackedGuess;
-    int maxAttempts = 3; // one fewer than the real number, because the guessTracker starts at 0
+    int maxAttempts = 5; // one fewer than the real number, because the guessTracker starts at 0
     Console.WriteLine("Welcome to the Guessing Game!");
+    Console.WriteLine("_____________________________");
     Console.WriteLine("You will be guessing my SECRET! number. The range is 1-100, inclusive.");
+    Console.WriteLine("First, select a difficulty. The choices are: Easy, Medium, Hard");
+    var difficulty = Console.ReadLine();
+    if(difficulty.ToLower() == "easy"){
+        maxAttempts = 7;//One fewer than the actual number. 7 becomes 8 attempts.
+    }
+    if(difficulty.ToLower() == "medium"){
+        maxAttempts = 5;
+    }
+    if(difficulty.ToLower() == "hard"){
+        maxAttempts = 3;
+    }
+    Console.WriteLine($"You only have {maxAttempts + 1} attempts to win!");
+    Console.WriteLine("___________________________________");
     Console.WriteLine("PLEASE: Only enter in a number!");
     Console.WriteLine($"Enter your guess (Guess {guessTracker + 1} - {maxAttempts - guessTracker} Left!): ");
 
